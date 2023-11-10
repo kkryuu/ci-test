@@ -1,0 +1,69 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build:
+    name: deploy to staging
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        apt-get update
+        apt install -y default-jre
+        apt install -y nano
+        apt install -y dos2unix
+        apt install -y curl
+        apt install -y ksh
+        apt-get install -y libssl-dev libncurses5-dev libsqlite3-dev libreadline-dev libtk8.6 libgdm-dev libpcap-dev 
+        apt-get install -y build-essential libffi-dev
+        apt install -y unixodbc unixodbc-dev
+        apt install -y openssh-server
+        apt install -y sshpass
+        apt-get install -y locales locales-all
+        locale-gen en_US en_US.UTF-8
+        dpkg-reconfigure locales
+        apt-get update
+        apt install -y git
+        apt install -y dumb-init
+        apt install -y lsb-release
+        curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
+        curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
+        apt-get update
+        ACCEPT_EULA=Y apt-get install -y msodbcsql17
+        ACCEPT_EULA=Y apt-get install -y mssql-tools
+        echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+        mkdir -p /datagrid/dlprod/gconsole/
+        mkdir -p /datagrid/dlprod_log/202308/raw/etl/win/
+        mkdir -p /datagrid/dlprod/support_scripts/
+        cd /datagrid/dlprod/gconsole/ && mkdir bin conf libs ddl logs python && mkdir -p python/Ubuntu18-04_python
+        wget https://answers.launchpad.net/ubuntu/+source/glibc/2.29-0ubuntu2/+build/16599428/+files/libc6_2.29-0ubuntu2_amd64.deb
+        dpkg -i --auto-deconfigure --force-all libc6_2.29-0ubuntu2_amd64.deb
+        cp bin/. /datagrid/dlprod/gconsole/bin/
+        cp conf/* /datagrid/dlprod/gconsole/conf/
+        cp libs/* /datagrid/dlprod/gconsole/libs/
+        cp python/Ubuntu18-04_python/. /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/
+        cp ddl/. /datagrid/dlprod/gconsole/ddl/
+        cp logs/. /datagrid/dlprod_log/202308/raw/etl/win/
+        cp logs/. /datagrid/dlprod/support_scripts/
+        cd /datagrid/dlprod/gconsole/bin
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install pandas
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install numpy
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install sqlalchemy
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install cryptography
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install schedule
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install azure-storage-blob
+        wget http://es.archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
+        dpkg -i libffi7_3.3-4_amd64.deb
+
+        /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then /datagrid/dlprod/gconsole/python/Ubuntu18-04_python/bin/python3.8 -m pip install -r requirements.txt; fi
+
+    - name: Test with pytest
+      run: |
+        pytest
