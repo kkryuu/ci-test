@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   my_job:
     name: deploy to staging
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-lastest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
