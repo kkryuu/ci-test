@@ -25,8 +25,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: $(( secrets.DOCKER_USERNAME ))
-        password: $(( secrets.DOCKER_PASS ))
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASS }}
         
     - name: Set up Docker Buildx
       id: buildx
@@ -39,6 +39,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: $(( secrets.DOCKER_USERNAME ))/python_ci:fromkkryuu
+        tags: ${{ secrets.DOCKER_USERNAME }}/python_ci:fromkkryuu
       env:
         DOCKER_CLI_CONFIG: ${{ steps.buildx.outputs.config }}
