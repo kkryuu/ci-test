@@ -30,11 +30,11 @@ jobs:
       #   run: |
       #     python -m pip install pyTermTk
       #     python -m pip install PyYAML
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v1
-      #   with:
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_PASS }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASS }}
           
       # - name: Set up Docker Buildx
       #   id: buildx
@@ -50,6 +50,9 @@ jobs:
       #     tags: ${{ secrets.DOCKER_USERNAME }}/python_ci:fromkkryuu
       #   env:
       #     DOCKER_CLI_CONFIG: ${{ steps.buildx.outputs.config }}
+      - name: List Docker Images
+        run: docker images
+
       - name: Push to GitHub Container Registry (ghcr.io)
         run: |
           docker tag kkryuu/python_ci:civ3 ghcr.io/kkryuu/python_ci:civ3
