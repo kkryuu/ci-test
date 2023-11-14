@@ -50,3 +50,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/python_ci:fromkkryuu
         env:
           DOCKER_CLI_CONFIG: ${{ steps.buildx.outputs.config }}
+      - name: Push to GitHub Container Registry (ghcr.io)
+        run: |
+          docker tag ${{ secrets.USERNAME }}/python_ci:fromkkryuu ghcr.io/${{ github.repository_owner }}/python_ci:fromkkryuu
+          docker push ghcr.io/${{ github.repository_owner }}/python_ci:fromkkryuu
