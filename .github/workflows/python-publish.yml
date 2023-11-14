@@ -5,9 +5,9 @@ name: Workflow Test
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "new-ci-test" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "new-ci-test" ]
     
 jobs:
   build:
