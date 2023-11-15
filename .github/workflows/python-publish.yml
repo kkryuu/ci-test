@@ -55,7 +55,10 @@ jobs:
 
       - name: Push to GitHub Container Registry (ghcr.io)
         run: |
-          docker tag kkryuu/python_ci:civ3 ghcr.io/kkryuu/python_ci:civ3
-          docker push ghcr.io/kkryuu/python_ci:civ3
+          echo $GHCR_TOKEN | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+          docker pull ${{ secrets.DOCKER_USERNAME }}/python_ci:civ3
+          docker tag ${{ secrets.DOCKER_USERNAME }}/python_ci:civ3 ghcr.io/${{ github.repository_owner }}/python_ci:civ3
+          docker push ghcr.io/${{ github.repository_owner }}/python_ci:civ3
         env:
-          DOCKER_CLI_CONFIG: ${{ steps.buildx.outputs.config }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+
