@@ -1,0 +1,4 @@
+7
+abfss://inbnd@dxseaadls002prd.dfs.core.windows.net/CARDX/LOS/CARDXLOS_DATAX_ASSET__C_D20231107.CTL
+CARDXLOS_DATAX_ASSET__C_D20231107.CTL
+78

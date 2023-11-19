@@ -1,0 +1,17 @@
+{
+	"ulid": "01HFHY8B913M01Q090WX213Z1S",
+	"minTime": 1700324621866,
+	"maxTime": 1700330400000,
+	"stats": {
+		"numSamples": 9213,
+		"numSeries": 1441,
+		"numChunks": 1441
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HFHY8B913M01Q090WX213Z1S"
+		]
+	},
+	"version": 1
+}

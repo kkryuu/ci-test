@@ -1,0 +1,17 @@
+{
+	"ulid": "01HFKQ4CDK41RSBATK36ABW5RP",
+	"minTime": 1700383568064,
+	"maxTime": 1700388000000,
+	"stats": {
+		"numSamples": 2315,
+		"numSeries": 1441,
+		"numChunks": 1441
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HFKQ4CDK41RSBATK36ABW5RP"
+		]
+	},
+	"version": 1
+}

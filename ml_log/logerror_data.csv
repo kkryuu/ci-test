@@ -1,0 +1,11 @@
+Logerror
+"ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_cc_prod_1_0 does not exist"
+"Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_cc_prod_1_0 does not exist (state=08S01,code=1)"
+"ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_actv_int_1_0 does not exist"
+"Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_actv_int_1_0 does not exist (state=08S01,code=1)"
+"ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_cls_rsn_1_0 does not exist"
+"Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_cls_rsn_1_0 does not exist (state=08S01,code=1)"
+"ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_clss_cd_1_0 does not exist"
+"Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Partition {dl_data_dt=2023-10-04} for table dlprod_persist_mnf_db.mnf_mrtg_acct_clss_cd_1_0 does not exist (state=08S01,code=1)"
+Info Error:::: No Custom Audit and SRC is not equal to RAW -- (-736)
+Info Error:::: Failed to load the data for audit table

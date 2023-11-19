@@ -1,0 +1,17 @@
+{
+	"ulid": "01HFK136636AW9T52RA28D4V1J",
+	"minTime": 1700361189834,
+	"maxTime": 1700366400000,
+	"stats": {
+		"numSamples": 2882,
+		"numSeries": 1441,
+		"numChunks": 1441
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HFK136636AW9T52RA28D4V1J"
+		]
+	},
+	"version": 1
+}
